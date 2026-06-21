@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
+import { useNavigate } from "react-router"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../components/ui/Card"
 import { FileText, Users, Clock, CheckCircle2, Loader2 } from "lucide-react"
 import { formatDate } from "../../lib/formatters"
@@ -7,6 +8,7 @@ import { consultationService } from "../../lib/services/consultationService"
 import { assureService } from "../../lib/services/assureService"
 
 export function MedecinDashboardPage() {
+  const navigate = useNavigate()
   const { user } = useAuthStore()
 
   const { data: consultations = [], isLoading: isLoadingConsultations } = useQuery({
@@ -33,7 +35,7 @@ export function MedecinDashboardPage() {
   }
   return (
     <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Card className="bg-[#0055FF] text-white border-transparent">
           <CardHeader className="pb-2">
             <CardDescription className="text-white/80">Consultations du mois</CardDescription>
@@ -73,18 +75,6 @@ export function MedecinDashboardPage() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Temps moyen</CardDescription>
-            <CardTitle className="text-3xl text-ink">25 min</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-2 text-sm text-ink-muted">
-              <Clock className="h-4 w-4" />
-              <span>Par consultation</span>
-            </div>
-          </CardContent>
-        </Card>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -138,7 +128,7 @@ export function MedecinDashboardPage() {
             <CardDescription>Outils pour simplifier votre journée</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="p-4 bg-white border border-ink/10 shadow-sm rounded-sm hover:border-[#0055FF] transition-colors cursor-pointer group" onClick={() => window.location.href = '/medecin/consultations/nouvelle'}>
+            <div className="p-4 bg-white border border-ink/10 shadow-sm rounded-sm hover:border-[#0055FF] transition-colors cursor-pointer group" onClick={() => navigate('/medecin/consultations/nouvelle')}>
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 bg-blue-50 text-[#0055FF] flex items-center justify-center group-hover:bg-[#0055FF] group-hover:text-white transition-colors">
                   <FileText className="h-5 w-5" />
@@ -149,8 +139,8 @@ export function MedecinDashboardPage() {
                 </div>
               </div>
             </div>
-            
-            <div className="p-4 bg-white border border-ink/10 shadow-sm rounded-sm hover:border-ink transition-colors cursor-pointer group">
+
+            <div className="p-4 bg-white border border-ink/10 shadow-sm rounded-sm hover:border-ink transition-colors cursor-pointer group" onClick={() => navigate('/medecin/patients')}>
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 bg-zinc-100 text-ink flex items-center justify-center group-hover:bg-ink group-hover:text-white transition-colors">
                   <Users className="h-5 w-5" />

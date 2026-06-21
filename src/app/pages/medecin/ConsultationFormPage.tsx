@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate, Link, useSearchParams } from "react-router-dom"
+import { useNavigate, Link, useSearchParams } from "react-router"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { ArrowLeft, Save, Plus, X, Loader2 } from "lucide-react"
@@ -62,7 +62,7 @@ export function ConsultationFormPage() {
   
   // Calculate default montant based on doctor identifiant if it contains 'S' for specialist
   const currentDoctor = medecins.find(m => m.id === user?.userId)
-  const isSpecialisteDoctor = currentDoctor?.identifiant?.includes('S') || false
+  const isSpecialisteDoctor = currentDoctor?.type === 'SPECIALISTE' || currentDoctor?.identifiant?.includes('S') || false
   const montantSoins = tarifs ? (isSpecialisteDoctor ? tarifs.specialiste : tarifs.generaliste) : 0
 
   const handleMedicamentsOk = () => {
@@ -98,7 +98,7 @@ ${prescriptionSpecialiste ? `\nOrientation Spécialiste:\nSpécialité: ${prescr
       toast.success("Consultation enregistrée avec succès")
       queryClient.invalidateQueries({ queryKey: ['consultations'] })
       queryClient.invalidateQueries({ queryKey: ['consultations-patient'] })
-      navigate("/medecin")
+      navigate("/medecin/dashboard")
     },
     onError: () => {
       toast.error("Erreur lors de l'enregistrement de la consultation")

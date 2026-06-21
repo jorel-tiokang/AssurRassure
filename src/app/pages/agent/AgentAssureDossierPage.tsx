@@ -144,9 +144,9 @@ export function AgentAssureDossierPage() {
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-medium text-ink">FM-{new Date().getFullYear()}-{feuille.id.toString().padStart(3, '0')}</h4>
                         <span className={`text-xs font-medium px-2 py-0.5 rounded-sm ${
-                          feuille.statut === "REMBOURSEE" ? "bg-green-50 text-green-700" : "bg-yellow-50 text-yellow-700"
+                          feuille.statut === "Remboursé" ? "bg-green-50 text-green-700" : "bg-yellow-50 text-yellow-700"
                         }`}>
-                          {feuille.statut === "REMBOURSEE" ? "Remboursé" : "En attente"}
+                          {feuille.statut}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-4 text-sm mt-3">

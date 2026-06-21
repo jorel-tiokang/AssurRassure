@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "mock": "node mock-server.cjs"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -74,6 +75,7 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "4.7.0",
+    "json-server": "^0.17.4",
     "tailwindcss": "4.1.12",
     "vite": "6.3.5"
   },

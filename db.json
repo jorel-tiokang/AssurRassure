@@ -1,0 +1,199 @@
+{
+  "assures": [
+    {
+      "id": 1,
+      "nom": "Durand",
+      "prenom": "Pierre",
+      "nss": "190010000000001",
+      "dateNaissance": "1990-01-15",
+      "adresse": "10 rue de la Paix, Paris",
+      "telephone": "0600000001",
+      "groupeSanguin": "A+",
+      "allergies": "Pénicilline",
+      "taille": 175,
+      "poids": 70.5,
+      "numeroCompte": "FR7600000000000000000000001",
+      "medecinTraitantId": 1
+    },
+    {
+      "id": 2,
+      "nom": "Lefebvre",
+      "prenom": "Marie",
+      "nss": "292020000000002",
+      "dateNaissance": "1992-05-20",
+      "adresse": "5 avenue des Fleurs, Lyon",
+      "telephone": "0600000002",
+      "groupeSanguin": "O-",
+      "allergies": "Aucune",
+      "taille": 165,
+      "poids": 60,
+      "numeroCompte": "FR7600000000000000000000002",
+      "medecinTraitantId": 1
+    },
+    {
+      "nom": "Tiokang ",
+      "prenom": "Jorel",
+      "nss": "1234567890123",
+      "dateNaissance": "2006-06-13",
+      "adresse": "Melen",
+      "telephone": "69099887766",
+      "groupeSanguin": "A-",
+      "allergies": "Sucre",
+      "taille": 1.6,
+      "poids": 65,
+      "numeroCompte": "CM2 100 23",
+      "medecinTraitantId": 3,
+      "id": 3
+    }
+  ],
+  "consultations": [
+    {
+      "id": 1,
+      "date": "2026-06-20T10:00:00",
+      "symptome": "Fièvre et toux",
+      "diagnostic": "Angine virale",
+      "patientId": 1,
+      "medecinId": 1,
+      "montantSoins": 25
+    },
+    {
+      "id": 2,
+      "date": "2026-06-21T14:30:00",
+      "symptome": "Douleurs thoraciques",
+      "diagnostic": "Tachycardie bénigne",
+      "patientId": 2,
+      "medecinId": 2,
+      "montantSoins": 50
+    },
+    {
+      "date": "2026-06-21T09:15:48.729Z",
+      "symptome": "Tousse beaucoup",
+      "diagnostic": "Tousse énormément\nBouche qui sent\n\nPrescription Médicamenteuse:\nCOlgate et Ginger",
+      "patientId": 3,
+      "medecinId": 1,
+      "montantSoins": 0,
+      "id": 3
+    },
+    {
+      "date": "2026-06-21T09:18:06.237Z",
+      "symptome": "RAS",
+      "diagnostic": "RAS\n\nPrescription Médicamenteuse:\nRAS",
+      "patientId": 3,
+      "medecinId": 1,
+      "montantSoins": 0,
+      "id": 4
+    }
+  ],
+  "medecins": [
+    {
+      "id": 1,
+      "nom": "Dupont",
+      "prenom": "Jean",
+      "identifiant": "MED001",
+      "specialite": "Généraliste",
+      "type": "GENERALISTE",
+      "clinique": "Clinique Centrale"
+    },
+    {
+      "id": 2,
+      "nom": "Martin",
+      "prenom": "Sophie",
+      "identifiant": "MED002",
+      "specialite": "Cardiologue",
+      "type": "SPECIALISTE",
+      "clinique": "Hôpital Nord"
+    },
+    {
+      "nom": "Njome",
+      "prenom": "David",
+      "rpps": "12345678901",
+      "type": "GENERALISTE",
+      "specialite": "Médecine Générale",
+      "clinique": "CHU Melen",
+      "estAssure": false,
+      "id": 3
+    },
+    {
+      "nom": "Esteban",
+      "prenom": "Moralez",
+      "rpps": "14987364789",
+      "type": "SPECIALISTE",
+      "specialite": "Neurologie",
+      "clinique": "Hadassah ",
+      "estAssure": false,
+      "id": 4
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "medecinId": 1,
+      "message": "Bienvenue sur la plateforme AssurRassure.",
+      "date": "2026-06-20T09:00:00",
+      "lu": false
+    }
+  ],
+  "feuilles": [
+    {
+      "id": 1,
+      "consultationId": 1,
+      "date": "2026-06-20T10:00:00",
+      "symptome": "Fièvre et toux",
+      "diagnostic": "Angine virale",
+      "patientId": 1,
+      "nomAssure": "Durand Pierre",
+      "nssAssure": "190010000000001",
+      "medecinId": 1,
+      "montantSoins": 5000,
+      "statut": "Non remboursé"
+    },
+    {
+      "id": 2,
+      "consultationId": 2,
+      "date": "2026-06-21T14:30:00",
+      "symptome": "Douleurs thoraciques",
+      "diagnostic": "Tachycardie bénigne",
+      "patientId": 2,
+      "nomAssure": "Lefebvre Marie",
+      "nssAssure": "292020000000002",
+      "medecinId": 2,
+      "montantSoins": 15000,
+      "statut": "Non remboursé"
+    },
+    {
+      "id": 3,
+      "consultationId": 3,
+      "date": "2026-06-21T09:15:48.729Z",
+      "symptome": "Tousse beaucoup",
+      "diagnostic": "Tousse énormément\nBouche qui sent\n\nPrescription Médicamenteuse:\nCOlgate et Ginger",
+      "patientId": 3,
+      "nomAssure": "Tiokang Jorel",
+      "nssAssure": "1234567890123",
+      "medecinId": 1,
+      "montantSoins": 5000,
+      "statut": "Remboursé",
+      "modePaiement": "CASH",
+      "numeroCompte": "CM2 100 23",
+      "dateRemboursement": "2026-06-21T10:14:16.903Z",
+      "tauxRemboursement": 1.0,
+      "montantRembourse": 5000
+    },
+    {
+      "id": 4,
+      "consultationId": 4,
+      "date": "2026-06-21T09:18:06.237Z",
+      "symptome": "RAS",
+      "diagnostic": "RAS\n\nPrescription Médicamenteuse:\nRAS",
+      "patientId": 3,
+      "nomAssure": "Tiokang Jorel",
+      "nssAssure": "1234567890123",
+      "medecinId": 1,
+      "montantSoins": 5000,
+      "statut": "Non remboursé"
+    }
+  ],
+  "tarifs": {
+    "generaliste": 5000,
+    "specialiste": 15000
+  }
+}

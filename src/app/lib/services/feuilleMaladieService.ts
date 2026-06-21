@@ -3,24 +3,28 @@ import { api } from '../api';
 export interface FeuilleMaladie {
   id: number;
   consultationId: number;
+  date: string;
+  symptome: string;
+  diagnostic: string;
+  patientId: number;
+  nomAssure?: string;
+  nssAssure?: string;
+  medecinId: number;
   montantSoins: number;
-  statut: 'ENREGISTREE' | 'REMBOURSEE';
+  statut: 'Non remboursé' | 'Remboursé';
   dateRemboursement?: string;
   montantRembourse?: number;
   tauxRemboursement?: number;
   modePaiement?: 'VIREMENT' | 'CASH';
+  numeroCompte?: string;
 }
 
 export const feuilleMaladieService = {
   getFeuilles: (assureId?: number, statut?: string): Promise<FeuilleMaladie[]> => {
     const params = new URLSearchParams();
     if (statut) params.append('statut', statut);
+    if (assureId) params.append('patientId', assureId.toString());
     
-    // Si l'endpoint final gère l'assureId dans le chemin :
-    if (assureId) {
-      return api.get(`/feuilles/assure/${assureId}?${params.toString()}`);
-    }
-    // S'il y a un endpoint global (à confirmer avec le backend)
     return api.get(`/feuilles?${params.toString()}`);
   },
   

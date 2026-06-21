@@ -89,7 +89,7 @@ export function PatientDossierPage() {
               </div>
               <div className="flex justify-between border-b border-ink/5 pb-2">
                 <span className="text-ink-muted">Sexe</span>
-                <span className="font-medium">{patient.sexe === 'M' ? 'Masculin' : patient.sexe === 'F' ? 'Féminin' : patient.sexe}</span>
+                <span className="font-medium">{patient.nss?.startsWith('1') ? 'Masculin' : patient.nss?.startsWith('2') ? 'Féminin' : 'Inconnu'}</span>
               </div>
               <div className="flex justify-between border-b border-ink/5 pb-2">
                 <span className="text-ink-muted">Taille / Poids</span>

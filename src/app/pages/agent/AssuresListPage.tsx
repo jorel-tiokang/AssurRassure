@@ -55,9 +55,9 @@ export function AssuresListPage() {
 
   const filtered = assures.filter(a => {
     const matchSearch =
-      a.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      a.prenom.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      a.nss.includes(searchTerm)
+      (a.nom || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (a.prenom || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (a.nss || '').includes(searchTerm)
     const age = getAge(a.dateNaissance)
     const matchAgeMin = !filters.ageMin || age >= parseInt(filters.ageMin)
     const matchAgeMax = !filters.ageMax || age <= parseInt(filters.ageMax)

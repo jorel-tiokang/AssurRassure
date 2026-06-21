@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useNavigate, useLocation, Link } from "react-router"
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import { toast } from "sonner"
@@ -18,7 +18,7 @@ const assureSchema = z.object({
   adresse: z.string().min(5, "L'adresse doit être plus précise"),
   telephone: z.string().min(9, "Le numéro de téléphone est invalide"),
   groupeSanguin: z.enum(["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"], {
-    errorMap: () => ({ message: "Veuillez sélectionner un groupe sanguin valide" }),
+    message: "Veuillez sélectionner un groupe sanguin valide"
   }),
   allergies: z.string().optional(),
   taille: z.coerce.number().min(0.5, "Taille invalide").max(2.5, "Taille invalide"),
@@ -43,7 +43,7 @@ export function AssureFormPage() {
   const savedFormValues = state.formValues ?? {}
 
   const { register, handleSubmit, reset, getValues, formState: { errors, isSubmitting } } = useForm<AssureFormValues>({
-    resolver: zodResolver(assureSchema),
+    resolver: zodResolver(assureSchema) as any,
     defaultValues: {
       groupeSanguin: "O+",
       ...savedFormValues,
@@ -57,7 +57,7 @@ export function AssureFormPage() {
   }, [])
 
   const createMutation = useMutation({
-    mutationFn: (data: Omit<AssureFormValues, "id"> & { medecinTraitantId?: number }) => 
+    mutationFn: (data: Omit<AssureFormValues, "id"> & { medecinTraitantId?: number }) =>
       assureService.createAssure(data as any),
     onSuccess: () => {
       toast.success("Assuré enregistré avec succès")
@@ -69,7 +69,7 @@ export function AssureFormPage() {
     }
   })
 
-  const onSubmit = (data: AssureFormValues) => {
+  const onSubmit: SubmitHandler<AssureFormValues> = (data) => {
     createMutation.mutate({
       ...data,
       medecinTraitantId: assignedMedecin?.id
@@ -123,7 +123,7 @@ export function AssureFormPage() {
               <Input type="date" {...register("dateNaissance")} />
               {errors.dateNaissance && <p className="text-xs text-red-600">{errors.dateNaissance.message}</p>}
             </div>
-            <div className="space-y-2 md:col-span-2">
+            <div className="space-y-2 ">
               <label className="text-sm font-medium text-ink">Adresse <span className="text-red-500">*</span></label>
               <Input {...register("adresse")} placeholder="Ex: Quartier Bastos, Yaoundé" />
               {errors.adresse && <p className="text-xs text-red-600">{errors.adresse.message}</p>}
@@ -132,10 +132,6 @@ export function AssureFormPage() {
               <label className="text-sm font-medium text-ink">Téléphone <span className="text-red-500">*</span></label>
               <Input {...register("telephone")} placeholder="Ex: 6 90 00 00 00" />
               {errors.telephone && <p className="text-xs text-red-600">{errors.telephone.message}</p>}
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-ink">Numéro de compte (IBAN/RIB)</label>
-              <Input {...register("numeroCompte")} placeholder="Ex: CM21 1000..." />
             </div>
           </div>
         </div>

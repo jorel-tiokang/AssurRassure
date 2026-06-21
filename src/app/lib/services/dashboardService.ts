@@ -11,6 +11,13 @@ export interface DashboardStats {
     GENERALISTE: number;
     SPECIALISTE: number;
   };
+  derniersRemboursements: Array<{
+    id: number;
+    nom: string;
+    date: string;
+    montant: string;
+    mode: string;
+  }>;
 }
 
 export interface Notification {

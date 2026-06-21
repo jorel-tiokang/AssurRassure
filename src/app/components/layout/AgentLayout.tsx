@@ -1,5 +1,5 @@
-import { Outlet, Link, useLocation } from "react-router"
-import { Users, LayoutDashboard, FileText, DollarSign, LogOut, Stethoscope } from "lucide-react"
+import { Outlet, Link, useLocation, useNavigate } from "react-router"
+import { Users, LayoutDashboard, FileText, DollarSign, LogOut, Stethoscope, ArrowLeft } from "lucide-react"
 
 export function AgentLayout() {
   const location = useLocation()
@@ -11,6 +11,10 @@ export function AgentLayout() {
     { name: "Feuilles de Maladie", path: "/agent/feuilles-maladies", icon: FileText },
     { name: "Tarifs", path: "/agent/tarifs", icon: DollarSign },
   ]
+
+  const navigate = useNavigate()
+  const pathSegments = location.pathname.split('/').filter(Boolean)
+  const showBackButton = pathSegments.length > 2
 
   return (
     <div className="flex min-h-screen bg-canvas font-sans">
@@ -66,9 +70,20 @@ export function AgentLayout() {
 
       <main className="flex-1 flex flex-col min-h-screen">
         <header className="h-16 border-b border-ink/10 bg-surface flex items-center justify-between px-8">
-          <h1 className="font-display text-xl font-medium tracking-tight text-ink">
-            {navItems.find(i => location.pathname.startsWith(i.path))?.name || "Administration"}
-          </h1>
+          <div className="flex items-center gap-4">
+            {showBackButton && (
+              <button 
+                onClick={() => navigate(-1)}
+                className="flex items-center justify-center h-8 w-8 rounded-sm hover:bg-ink/5 text-ink-muted transition-colors"
+                title="Retour"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </button>
+            )}
+            <h1 className="font-display text-xl font-medium tracking-tight text-ink">
+              {navItems.find(i => location.pathname.startsWith(i.path))?.name || "Administration"}
+            </h1>
+          </div>
           <div className="flex items-center gap-4">
             <span className="text-sm font-medium px-2.5 py-1 bg-blue-50 text-[#0055FF] rounded-sm border border-[#0055FF]/20">
               Connecté

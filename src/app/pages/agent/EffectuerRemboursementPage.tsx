@@ -22,7 +22,7 @@ export function EffectuerRemboursementPage() {
 
   const { data: feuilles = [], isLoading: isLoadingFeuilles } = useQuery({
     queryKey: ['feuilles-assure', selectedAssureId],
-    queryFn: () => feuilleMaladieService.getFeuilles(selectedAssureId as number, "ENREGISTREE"),
+    queryFn: () => feuilleMaladieService.getFeuilles(selectedAssureId as number, "Non remboursé"),
     enabled: selectedAssureId !== ""
   })
 

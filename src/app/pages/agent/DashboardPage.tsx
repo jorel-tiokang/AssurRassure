@@ -134,27 +134,29 @@ export function DashboardPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-ink/5">
-                  {[
-                    { nom: "Mvondo Jean", date: "Aujourd'hui", montant: "15 000 FCFA", mode: "VIREMENT" },
-                    { nom: "Ndiaye Paul", date: "Aujourd'hui", montant: "8 500 FCFA", mode: "CASH" },
-                    { nom: "Tchuente Marie", date: "Hier", montant: "25 000 FCFA", mode: "VIREMENT" },
-                  ].map((row, i) => (
-                    <tr key={i} className="transition-colors">
-                      <td className="px-4 py-4 font-medium text-ink">{row.nom}</td>
-                      <td className="px-4 py-4 text-ink-muted">{row.date}</td>
-                      <td className="px-4 py-4 font-medium">{row.montant}</td>
-                      <td className="px-4 py-4">
-                        <span className="text-xs px-2 py-1 bg-zinc-100 text-ink rounded-sm">
-                          {row.mode}
-                        </span>
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-sm">
-                          Remboursé
-                        </span>
-                      </td>
+                  {stats?.derniersRemboursements?.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">Aucun remboursement récent.</td>
                     </tr>
-                  ))}
+                  ) : (
+                    stats?.derniersRemboursements?.map((row, i) => (
+                      <tr key={i} className="transition-colors">
+                        <td className="px-4 py-4 font-medium text-ink">{row.nom}</td>
+                        <td className="px-4 py-4 text-ink-muted">{row.date}</td>
+                        <td className="px-4 py-4 font-medium">{row.montant}</td>
+                        <td className="px-4 py-4">
+                          <span className="text-xs px-2 py-1 bg-zinc-100 text-ink rounded-sm">
+                            {row.mode}
+                          </span>
+                        </td>
+                        <td className="px-4 py-4">
+                          <span className="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-sm">
+                            Remboursé
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>

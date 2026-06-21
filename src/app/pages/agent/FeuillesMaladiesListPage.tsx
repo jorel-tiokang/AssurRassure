@@ -16,7 +16,7 @@ const formatFCFA = (n: number | undefined) =>
 
 export function FeuillesMaladiesListPage() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [filterStatut, setFilterStatut] = useState<"" | "ENREGISTREE" | "REMBOURSEE">("")
+  const [filterStatut, setFilterStatut] = useState<"" | "Non remboursé" | "Remboursé">("")
   const [showFilters, setShowFilters] = useState(false)
   const [viewFeuille, setViewFeuille] = useState<FeuilleMaladie | null>(null)
 
@@ -34,8 +34,8 @@ export function FeuillesMaladiesListPage() {
     return matchSearch
   })
 
-  const nonRembCount = feuilles.filter(f => f.statut === "ENREGISTREE").length
-  const rembCount = feuilles.filter(f => f.statut === "REMBOURSEE").length
+  const nonRembCount = feuilles.filter(f => f.statut === "Non remboursé").length
+  const rembCount = feuilles.filter(f => f.statut === "Remboursé").length
 
   return (
     <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -103,12 +103,12 @@ export function FeuillesMaladiesListPage() {
               <label className="text-xs font-medium text-ink-muted uppercase tracking-wide">Statut</label>
               <select
                 value={filterStatut}
-                onChange={e => setFilterStatut(e.target.value as "" | "ENREGISTREE" | "REMBOURSEE")}
+                onChange={e => setFilterStatut(e.target.value as "" | "Non remboursé" | "Remboursé")}
                 className="flex h-10 bg-white border border-ink/20 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF]"
               >
                 <option value="">Tous les statuts</option>
-                <option value="ENREGISTREE">En attente (Enregistrée)</option>
-                <option value="REMBOURSEE">Remboursée</option>
+                <option value="Non remboursé">Non remboursé</option>
+                <option value="Remboursé">Remboursé</option>
               </select>
             </div>
             {activeFilterCount > 0 && (
@@ -125,6 +125,7 @@ export function FeuillesMaladiesListPage() {
             <thead className="text-xs text-ink-muted uppercase bg-zinc-50 border-b border-ink/10">
               <tr>
                 <th className="px-6 py-4 font-medium">Référence (ID)</th>
+                <th className="px-6 py-4 font-medium">Assuré</th>
                 <th className="px-6 py-4 font-medium">ID Consultation</th>
                 <th className="px-6 py-4 font-medium">Montant Soins</th>
                 <th className="px-6 py-4 font-medium">Montant Remboursé</th>
@@ -156,6 +157,10 @@ export function FeuillesMaladiesListPage() {
                 filtered.map(feuille => (
                   <tr key={feuille.id} className="transition-colors">
                     <td className="px-6 py-4 font-mono font-medium text-ink text-xs">FM-{feuille.id}</td>
+                    <td className="px-6 py-4">
+                      <div className="font-medium text-ink">{feuille.nomAssure || "Inconnu"}</div>
+                      <div className="text-xs text-ink-muted mt-0.5">NSS: {feuille.nssAssure || "-"}</div>
+                    </td>
                     <td className="px-6 py-4 text-ink-muted">
                       Consultation #{feuille.consultationId}
                     </td>
@@ -166,15 +171,15 @@ export function FeuillesMaladiesListPage() {
                       {formatFCFA(feuille.montantRembourse)}
                     </td>
                     <td className="px-6 py-4">
-                      {feuille.statut === "REMBOURSEE" ? (
+                      {feuille.statut === "Remboursé" ? (
                         <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-sm text-xs font-medium bg-green-50 text-green-700">
                           <CheckCircle2 className="h-3.5 w-3.5" />
-                          Remboursée
+                          Remboursé
                         </span>
                       ) : (
                         <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-sm text-xs font-medium bg-amber-50 text-amber-700">
                           <Clock className="h-3.5 w-3.5" />
-                          En attente
+                          Non remboursé
                         </span>
                       )}
                     </td>
@@ -208,13 +213,13 @@ export function FeuillesMaladiesListPage() {
           <DialogHeader>
             <DialogTitle className="font-display text-xl text-ink flex items-center gap-3">
               Feuille de Maladie #{viewFeuille?.id}
-              {viewFeuille?.statut === "REMBOURSEE" ? (
+              {viewFeuille?.statut === "Remboursé" ? (
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-sm text-xs font-medium bg-green-50 text-green-700">
-                  <CheckCircle2 className="h-3 w-3" /> Remboursée
+                  <CheckCircle2 className="h-3 w-3" /> Remboursé
                 </span>
               ) : (
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-sm text-xs font-medium bg-amber-50 text-amber-700">
-                  <Clock className="h-3 w-3" /> En attente
+                  <Clock className="h-3 w-3" /> Non remboursé
                 </span>
               )}
             </DialogTitle>
@@ -224,15 +229,29 @@ export function FeuillesMaladiesListPage() {
             <div className="space-y-6 pt-2">
               {/* Consultation info */}
               <div>
-                <h3 className="text-xs font-medium text-ink-muted uppercase tracking-wide mb-3">Informations de Consultation</h3>
+                <h3 className="text-xs font-medium text-ink-muted uppercase tracking-wide mb-3">Informations Médicales (Consultation #{viewFeuille.consultationId})</h3>
                 <dl className="grid grid-cols-2 gap-x-6 gap-y-3">
+                  <div className="col-span-2">
+                    <dt className="text-xs text-ink-muted">Assuré</dt>
+                    <dd className="font-medium text-ink">
+                      {viewFeuille.nomAssure || "Inconnu"} <span className="text-ink-muted font-normal ml-2">(NSS: {viewFeuille.nssAssure || "-"})</span>
+                    </dd>
+                  </div>
                   <div>
-                    <dt className="text-xs text-ink-muted">ID Consultation</dt>
-                    <dd className="font-medium text-ink">{viewFeuille.consultationId}</dd>
+                    <dt className="text-xs text-ink-muted">Date de consultation</dt>
+                    <dd className="font-medium text-ink">{viewFeuille.date ? new Date(viewFeuille.date).toLocaleDateString("fr-FR") : "-"}</dd>
                   </div>
                   <div>
                     <dt className="text-xs text-ink-muted">Statut</dt>
-                    <dd className="font-medium text-ink">{viewFeuille.statut === "REMBOURSEE" ? "Remboursée" : "En attente"}</dd>
+                    <dd className="font-medium text-ink">{viewFeuille.statut}</dd>
+                  </div>
+                  <div className="col-span-2">
+                    <dt className="text-xs text-ink-muted">Symptômes</dt>
+                    <dd className="font-medium text-ink">{viewFeuille.symptome || "-"}</dd>
+                  </div>
+                  <div className="col-span-2">
+                    <dt className="text-xs text-ink-muted">Diagnostic</dt>
+                    <dd className="font-medium text-ink whitespace-pre-wrap">{viewFeuille.diagnostic || "-"}</dd>
                   </div>
                   <div>
                     <dt className="text-xs text-ink-muted">Montant des soins</dt>
@@ -241,8 +260,8 @@ export function FeuillesMaladiesListPage() {
                 </dl>
               </div>
 
-              {/* Remboursement info — only if remboursée */}
-              {viewFeuille.statut === "REMBOURSEE" && (
+              {/* Remboursement info — only if remboursé */}
+              {viewFeuille.statut === "Remboursé" && (
                 <div className="border-t border-ink/10 pt-6">
                   <h3 className="text-xs font-medium text-ink-muted uppercase tracking-wide mb-3">Informations de Remboursement</h3>
                   <dl className="grid grid-cols-2 gap-x-6 gap-y-3">
@@ -268,6 +287,12 @@ export function FeuillesMaladiesListPage() {
                         </span>
                       </dd>
                     </div>
+                    {viewFeuille.modePaiement === 'VIREMENT' && viewFeuille.numeroCompte && (
+                      <div className="col-span-2">
+                        <dt className="text-xs text-ink-muted">Compte de destination (Virement)</dt>
+                        <dd className="font-mono font-medium text-ink">{viewFeuille.numeroCompte}</dd>
+                      </div>
+                    )}
                   </dl>
                 </div>
               )}
