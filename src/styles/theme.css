@@ -1,0 +1,24 @@
+@theme {
+  --font-sans: "Satoshi", sans-serif;
+  --font-display: "Cabinet Grotesk", sans-serif;
+  --color-accent: #0055FF;
+  --color-accent-hover: #0044CC;
+  --color-surface: #ffffff;
+  --color-ink: #0f1115;
+  --color-ink-muted: #4b5563;
+  --color-canvas: #fafafa;
+}
+
+@layer base {
+  :root {
+    --radius: 0rem; /* Bold, sharp brutalist edge like Slack/Duna often leans towards */
+  }
+
+  body {
+    @apply font-sans antialiased text-ink bg-canvas;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-ink;
+  }
+}
