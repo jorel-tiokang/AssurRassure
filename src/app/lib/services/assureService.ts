@@ -6,6 +6,7 @@ export interface Assure {
   prenom: string;
   nss: string;
   dateNaissance: string;
+  sexe: 'Masculin' | 'Féminin';
   adresse: string;
   telephone?: string;
   groupeSanguin: string;

@@ -88,6 +88,10 @@ export function AgentAssureDossierPage() {
                 <span className="font-medium">{new Date(assure.dateNaissance).toLocaleDateString("fr-FR")}</span>
               </div>
               <div className="flex justify-between border-b border-ink/5 pb-2">
+                <span className="text-ink-muted">Sexe</span>
+                <span className="font-medium">{assure.sexe || '-'}</span>
+              </div>
+              <div className="flex justify-between border-b border-ink/5 pb-2">
                 <span className="text-ink-muted">Âge</span>
                 <span className="font-medium">{getAge(assure.dateNaissance)} ans</span>
               </div>

@@ -15,6 +15,9 @@ const assureSchema = z.object({
   prenom: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
   nss: z.string().regex(/^\d{13}$/, "Le NSS doit comporter exactement 13 chiffres"),
   dateNaissance: z.string().min(1, "La date de naissance est requise"),
+  sexe: z.enum(["Masculin", "Féminin"], {
+    message: "Veuillez sélectionner le sexe",
+  }),
   adresse: z.string().min(5, "L'adresse doit être plus précise"),
   telephone: z.string().min(9, "Le numéro de téléphone est invalide"),
   groupeSanguin: z.enum(["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"], {
@@ -46,6 +49,7 @@ export function AssureFormPage() {
     resolver: zodResolver(assureSchema) as any,
     defaultValues: {
       groupeSanguin: "O+",
+      sexe: "Masculin",
       ...savedFormValues,
     },
   })
@@ -122,6 +126,17 @@ export function AssureFormPage() {
               <label className="text-sm font-medium text-ink">Date de naissance <span className="text-red-500">*</span></label>
               <Input type="date" {...register("dateNaissance")} />
               {errors.dateNaissance && <p className="text-xs text-red-600">{errors.dateNaissance.message}</p>}
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-ink">Sexe <span className="text-red-500">*</span></label>
+              <select
+                {...register("sexe")}
+                className="flex h-10 w-full bg-white border border-ink/20 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] focus-visible:border-transparent transition-all"
+              >
+                <option value="Masculin">Masculin</option>
+                <option value="Féminin">Féminin</option>
+              </select>
+              {errors.sexe && <p className="text-xs text-red-600">{errors.sexe.message}</p>}
             </div>
             <div className="space-y-2 ">
               <label className="text-sm font-medium text-ink">Adresse <span className="text-red-500">*</span></label>
