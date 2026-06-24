@@ -4,3 +4,13 @@
     background-attachment: fixed;
     background-size: cover;
 }
+
+.hero-line-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px; /* Controls the space between the text and the lines */
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
