@@ -41,18 +41,17 @@ export default function CTASection() {
               className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Prêt à simplifier votre<br />
-              <span className="text-gradient-primary">gestion d'assurance ?</span>
+              Prêt à digitaliser votre<br />
+              <span className="text-gradient-primary">gestion médicale ?</span>
             </h2>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-              Rejoignez AssurRassure aujourd'hui. Inscrivez-vous en quelques minutes
-              et découvrez une nouvelle façon de gérer les soins de santé.
+              Rejoignez le réseau AssurRassure aujourd'hui. Connectez votre établissement ou votre compagnie d'assurance en quelques minutes.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
               <button className="group flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-2xl shadow-2xl shadow-blue-600/30 hover:shadow-blue-500/40 transition-all duration-300 hover:-translate-y-1 text-base">
-                Créer mon compte gratuitement
+                Devenir partenaire
                 <svg
                   className="w-5 h-5 group-hover:translate-x-1 transition-transform"
                   fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}

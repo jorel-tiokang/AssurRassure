@@ -1,3 +1,4 @@
+
 @theme {
   --font-sans: "Satoshi", sans-serif;
   --font-display: "Cabinet Grotesk", sans-serif;
@@ -10,15 +11,12 @@
 }
 
 @layer base {
-  :root {
+  .theme-dashboard {
     --radius: 0rem; /* Bold, sharp brutalist edge like Slack/Duna often leans towards */
-  }
-
-  body {
     @apply font-sans antialiased text-ink bg-canvas;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  .theme-dashboard h1, .theme-dashboard h2, .theme-dashboard h3, .theme-dashboard h4, .theme-dashboard h5, .theme-dashboard h6 {
     @apply font-display tracking-tight text-ink;
   }
 }

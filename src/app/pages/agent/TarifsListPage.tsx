@@ -155,7 +155,7 @@ export function TarifsListPage() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="h-9 w-9 text-ink-muted hover:text-ink"
+                    className="h-9 w-9 text-ink-muted hover:text-white"
                     onClick={() => startEdit(tarif)}
                     title="Modifier le tarif"
                   >

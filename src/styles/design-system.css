@@ -1,6 +1,5 @@
-@import "tailwindcss";
 
-@theme inline {
+@theme {
     --color-primary: #2563EB;
     --color-primary-dark: #1D4ED8;
     --color-primary-light: #3B82F6;
@@ -16,7 +15,7 @@
     --color-white: #FFFFFF;
 }
 
-:root {
+.theme-landing {
     --primary: #2563EB;
     --primary-dark: #1D4ED8;
     --primary-light: #3B82F6;
@@ -41,14 +40,11 @@
     --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
     --shadow-hover: 0 12px 40px rgba(37, 99, 235, 0.15);
     --shadow-primary: 0 8px 32px rgba(37, 99, 235, 0.25);
-}
-
 
 html {
     scroll-behavior: smooth;
 }
 
-body {
     font-family: var(--font-body);
     background-color: var(--light);
     color: var(--dark);

@@ -17,7 +17,7 @@ function CountUp({ to, suffix = '', duration = 2 }: { to: number; suffix?: strin
 }
 
 const stats = [
-  { value: 2500, suffix: '+', label: 'Assurés actifs', sub: 'sur la plateforme', color: 'text-blue-600' },
+  { value: 2500, suffix: '+', label: 'Dossiers de soins traités', sub: 'sur la plateforme', color: 'text-blue-600' },
   { value: 340, suffix: '', label: 'Médecins partenaires', sub: 'généralistes & spécialistes', color: 'text-slate-900' },
   { value: 98, suffix: '%', label: 'Satisfaction client', sub: 'taux moyen mensuel', color: 'text-emerald-600' },
   { value: 12000, suffix: '+', label: 'Remboursements traités', sub: 'depuis le lancement', color: 'text-blue-600' },
@@ -68,9 +68,12 @@ export default function StatsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-blue-600 text-sm font-bold uppercase tracking-widest mb-4">
-            Chiffres clés
-          </span>
+          <div className="flex flex-col items-center justify-center mb-6">
+            <span className="text-blue-600 text-sm font-bold uppercase tracking-widest mb-3">
+              Chiffres clés
+            </span>
+            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full" />
+          </div>
           <h2
             className="text-4xl lg:text-5xl font-black text-slate-900"
             style={{ fontFamily: 'var(--font-display)' }}

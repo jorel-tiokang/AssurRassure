@@ -2,26 +2,6 @@ import { motion } from 'framer-motion'
 
 const profiles = [
   {
-    role: 'Espace Assuré',
-    headline: 'Vos soins, remboursés sans paperasse.',
-    description:
-      "Consultez un praticien, votre feuille de soins est télétransmise instantanément. Suivez l'arrivée de l'argent sur votre compte en temps réel.",
-    accentTheme: {
-      iconBg: 'bg-blue-600 text-white shadow-lg shadow-blue-600/20',
-      badgeClass: 'bg-blue-50 text-blue-700 border-blue-200/80',
-      checkColor: 'text-blue-600',
-      hoverBorder: 'hover:border-blue-500/40 hover:shadow-blue-500/5',
-      indicator: 'bg-blue-500'
-    },
-    tag: 'Couverture : 100% chez le Généraliste',
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-      </svg>
-    ),
-    perks: ['Suivi en direct des virements', 'Zéro document papier à poster', 'Historique médical centralisé'],
-  },
-  {
     role: 'Espace Médecin',
     headline: 'Gérez vos actes sans friction.',
     description:
@@ -77,11 +57,14 @@ export default function ValuePropSection() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-24"
         >
-          <span className="inline-block text-blue-600 text-xs font-black uppercase tracking-[0.25em] mb-5 px-3 py-1 bg-blue-50 rounded-full border border-blue-100">
-            Écosystème Connecté
-          </span>
+          <div className="flex flex-col items-center justify-center mb-6">
+            <span className="text-blue-600 text-sm font-bold uppercase tracking-[0.2em] mb-3">
+              Écosystème Connecté
+            </span>
+            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full" />
+          </div>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-6">
-            Trois profils d'utilisateurs. <br />
+            Deux profils d'utilisateurs. <br />
             <span className="text-blue-600">Une seule vérité comptable.</span>
           </h2>
           <p className="text-slate-600 text-lg leading-[1.85]">
@@ -90,57 +73,53 @@ export default function ValuePropSection() {
           </p>
         </motion.div>
 
-        {/* GRILLE DES 3 PROFILS */}
-        <div className="grid lg:grid-cols-3 gap-8 xl:gap-10">
+        {/* ZONES DE TEXTES ALIGNÉES HORIZONTALEMENT */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {profiles.map((profile, i) => (
             <motion.div
               key={profile.role}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: i === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className={`group flex flex-col justify-between bg-white rounded-[28px] border border-slate-200/80 p-8 sm:p-10 transition-all duration-300 ${profile.accentTheme.hoverBorder} hover:-translate-y-1.5 shadow-xs hover:shadow-xl`}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col relative"
             >
-              <div>
-                {/* Ligne Top : Icône + Badge */}
-                <div className="flex items-center justify-between mb-10">
-                  <div className={`w-14 h-14 rounded-2xl ${profile.accentTheme.iconBg} flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 duration-200`}>
-                    {profile.icon}
-                  </div>
-                  <span className={`text-xs font-bold px-3.5 py-1.5 rounded-full border ${profile.accentTheme.badgeClass}`}>
-                    {profile.role}
-                  </span>
+              {/* Ligne Top : Icône + Badge */}
+              <div className="flex items-center gap-6 mb-8">
+                <div className={`w-16 h-16 rounded-2xl ${profile.accentTheme.iconBg} flex items-center justify-center shrink-0`}>
+                  {profile.icon}
                 </div>
-
-                {/* Titre de la carte */}
-                <h3 className="text-2xl font-extrabold text-slate-900 mb-5 leading-[1.3] tracking-tight">
-                  {profile.headline}
-                </h3>
-
-                {/* LA DESCRIPTION AVEC LE VRAI ESPACE ENTRE LES LIGNES */}
-                <p className="text-slate-600 text-base font-normal leading-[1.85] mb-10">
-                  {profile.description}
-                </p>
-
-                <hr className="border-slate-100 mb-8" />
-
-                {/* Liste des avantages (Espace vertical de 16px entre chaque point !) */}
-                <ul className="space-y-4 mb-10">
-                  {profile.perks.map(perk => (
-                    <li key={perk} className="flex items-start gap-3.5 text-sm text-slate-700 font-medium leading-relaxed">
-                      <svg className={`w-5 h-5 ${profile.accentTheme.checkColor} shrink-0 mt-0.5`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                      </svg>
-                      <span>{perk}</span>
-                    </li>
-                  ))}
-                </ul>
+                <span className={`text-sm font-bold px-4 py-2 rounded-full border ${profile.accentTheme.badgeClass}`}>
+                  {profile.role}
+                </span>
               </div>
 
-              {/* FOOTER DE LA CARTE : Règle métier ancrée en bas */}
-              <div className="pt-5 border-t border-dashed border-slate-200/80 mt-auto">
-                <div className="flex items-center gap-2.5 text-xs font-bold text-slate-500 uppercase tracking-wider">
-                  <span className={`w-2 h-2 rounded-full ${profile.accentTheme.indicator}`} />
+              {/* Titre */}
+              <h3 className="text-3xl font-extrabold text-slate-900 mb-6 leading-[1.3] tracking-tight">
+                {profile.headline}
+              </h3>
+
+              {/* Description */}
+              <p className="text-slate-600 text-lg font-normal leading-[1.85] mb-10">
+                {profile.description}
+              </p>
+
+              {/* Liste des avantages */}
+              <ul className="space-y-5 mb-12">
+                {profile.perks.map(perk => (
+                  <li key={perk} className="flex items-start gap-4 text-base text-slate-700 font-medium leading-relaxed">
+                    <svg className={`w-6 h-6 ${profile.accentTheme.checkColor} shrink-0 mt-0.5`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                    <span>{perk}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Règle métier */}
+              <div className="pt-6 border-t border-slate-200 mt-auto">
+                <div className="flex items-center gap-3 text-sm font-bold text-slate-500 uppercase tracking-wider">
+                  <span className={`w-2.5 h-2.5 rounded-full ${profile.accentTheme.indicator}`} />
                   <span>{profile.tag}</span>
                 </div>
               </div>

@@ -14,7 +14,7 @@ export function MedecinLayout() {
   ]
 
   return (
-    <div className="flex min-h-screen bg-canvas font-sans">
+    <div className="theme-dashboard flex min-h-screen">
       <aside className="w-64 bg-ink text-white flex flex-col border-r border-white/10">
         <div className="p-6">
           <Link to="/" className="flex items-center gap-2">

@@ -3,31 +3,31 @@ import { motion } from 'framer-motion'
 const steps = [
     {
         number: '01',
-        actor: 'Assuré',
-        actorColor: 'bg-blue-600',
-        actorBadgeText: 'text-blue-700 bg-blue-50',
-        actorShadow: 'shadow-blue-600/20',
-        title: 'Consultation médicale',
+        actor: 'Médecin',
+        actorColor: 'bg-slate-800',
+        actorBadgeText: 'text-slate-700 bg-slate-100',
+        actorShadow: 'shadow-slate-800/20',
+        title: 'Saisie de l\'acte',
         description:
-            "L'assuré consulte un médecin partenaire (généraliste ou spécialiste) inscrit sur la plateforme AssurRassure.",
+            "Le professionnel de santé enregistre le motif de consultation et le tarif appliqué directement depuis son tableau de bord.",
         icon: (
             <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
             </svg>
         ),
     },
     {
         number: '02',
-        actor: 'Médecin',
-        actorColor: 'bg-slate-800',
-        actorBadgeText: 'text-slate-700 bg-slate-100',
-        actorShadow: 'shadow-slate-800/20',
-        title: 'Enregistrement & Feuille de soins',
+        actor: 'Système',
+        actorColor: 'bg-indigo-500',
+        actorBadgeText: 'text-indigo-700 bg-indigo-50',
+        actorShadow: 'shadow-indigo-500/20',
+        title: 'Télétransmission',
         description:
-            "Le médecin enregistre la consultation dans son tableau de bord et génère une feuille de soins numérique transmise automatiquement.",
+            "La plateforme génère instantanément la feuille de soins numérique et la transmet de manière sécurisée à l'assureur.",
         icon: (
             <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
             </svg>
         ),
     },
@@ -37,9 +37,9 @@ const steps = [
         actorColor: 'bg-emerald-500',
         actorBadgeText: 'text-emerald-700 bg-emerald-50',
         actorShadow: 'shadow-emerald-500/20',
-        title: 'Traitement de la demande',
+        title: 'Application des barèmes',
         description:
-            "L'assureur reçoit et examine la feuille de soins. Il applique les règles : 100% pour un généraliste, 80% pour un spécialiste.",
+            "L'assureur reçoit et examine le dossier. Le moteur applique automatiquement les règles comptables définies (ex: 100% ou 80%).",
         icon: (
             <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
@@ -48,16 +48,16 @@ const steps = [
     },
     {
         number: '04',
-        actor: 'Assuré',
+        actor: 'Système',
         actorColor: 'bg-blue-600',
         actorBadgeText: 'text-blue-700 bg-blue-50',
         actorShadow: 'shadow-blue-600/20',
-        title: 'Remboursement effectué',
+        title: 'Ordre de virement',
         description:
-            "L'assuré reçoit son remboursement selon le mode choisi (virement ou cash) et peut suivre l'historique depuis son espace.",
+            "La validation finale déclenche l'ordre de virement vers le compte du bénéficiaire, assurant une traçabilité totale.",
         icon: (
             <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         ),
     },
@@ -79,9 +79,12 @@ export default function HowItWorksSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-24"
                 >
-                    <span className="inline-block text-blue-600 text-sm font-bold uppercase tracking-widest mb-4 bg-blue-50 px-4 py-1.5 rounded-full">
-                        Processus simplifié
-                    </span>
+                    <div className="flex flex-col items-center justify-center mb-6">
+                        <span className="text-blue-600 text-sm font-bold uppercase tracking-[0.2em] mb-3">
+                            Processus simplifié
+                        </span>
+                        <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-emerald-400 rounded-full" />
+                    </div>
                     <h2
                         className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight"
                         style={{ fontFamily: 'var(--font-display)' }}

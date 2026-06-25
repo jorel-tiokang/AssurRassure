@@ -9,8 +9,6 @@ export default function HeroSection() {
       {/* 1. AMBIENT GLOW (Un seul, très large, centré en haut. Fini les taches partout) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-600/15 via-transparent to-transparent pointer-events-none" />
 
-      {/* 2. JONCTION DIAGONALE BLANCHE VERS LA SUITE */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-24 bg-white [clip-path:polygon(100%_0,_100%_100%,_0_100%)] z-20" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -18,15 +16,16 @@ export default function HeroSection() {
           {/* ================= COLONNE GAUCHE (6/12) ================= */}
           <div className="lg:col-span-6 text-left">
             
-            {/* Tag / Pill */}
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs sm:text-sm font-medium mb-8"
+              className="flex flex-col items-start mb-8"
             >
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              Assurance Santé & Automatisation
+              <span className="text-blue-400 text-sm font-bold uppercase tracking-widest mb-2">
+                Assurance Santé & Automatisation
+              </span>
+              <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" />
             </motion.div>
 
             {/* Headline propre */}
@@ -34,10 +33,10 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-[1.08] mb-6"
+              className="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-white tracking-tight leading-[1.08] mb-6"
             >
-              Votre santé, <br />
-              <span className="text-blue-500">remboursée</span> simplement.
+              La gestion des assurés et leurs feuilles de maladies, <br className="hidden sm:block" />
+              <span className="text-blue-500">simplifiée et automatisée.</span>
             </motion.h1>
 
             <motion.p
@@ -46,7 +45,7 @@ export default function HeroSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg text-slate-400 leading-relaxed mb-10 max-w-xl"
             >
-              L'écosystème qui connecte Assurés, Médecins et Assureurs. 
+              La plateforme dédiée aux Médecins et aux Assureurs pour fluidifier les remboursements. 
               Éditez vos feuilles de soins en consultation et déclenchez les remboursements en un clic selon vos barèmes.
             </motion.p>
 
@@ -57,16 +56,12 @@ export default function HeroSection() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-14 max-w-md"
             >
-              <button className="group flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-4 rounded-xl shadow-lg shadow-blue-600/25 transition-all">
+              <a href="/login" className="group flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base px-8 py-4 rounded-xl shadow-lg shadow-blue-600/25 transition-all w-full sm:w-auto">
                 Ouvrir mon espace
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
-              </button>
-              
-              <button className="flex items-center justify-center gap-2.5 bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-800 px-7 py-4 rounded-xl font-semibold text-base transition-all">
-                Démo Assureur
-              </button>
+              </a>
             </motion.div>
 
             {/* Chiffres de rassurance */}
@@ -115,9 +110,13 @@ export default function HeroSection() {
                     <p className="text-sm font-bold text-white">Moteur de Remboursement</p>
                   </div>
                 </div>
-                <span className="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full font-medium">
-                  Barème actif
-                </span>
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-[1px] bg-emerald-500/30" />
+                  <span className="text-xs text-emerald-400 font-semibold uppercase tracking-widest">
+                    Barème actif
+                  </span>
+                  <div className="w-6 h-[1px] bg-emerald-500/30" />
+                </div>
               </div>
 
               {/* Contenu : Les 2 simulations imbriquées */}
