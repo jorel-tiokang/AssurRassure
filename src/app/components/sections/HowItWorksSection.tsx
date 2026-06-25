@@ -7,7 +7,7 @@ const steps = [
         actorColor: 'bg-slate-800',
         actorBadgeText: 'text-slate-700 bg-slate-100',
         actorShadow: 'shadow-slate-800/20',
-        title: 'Saisie de l\'acte',
+        title: 'Saisie de la consultation',
         description:
             "Le professionnel de santé enregistre le motif de consultation et le tarif appliqué directement depuis son tableau de bord.",
         icon: (
@@ -52,9 +52,9 @@ const steps = [
         actorColor: 'bg-blue-600',
         actorBadgeText: 'text-blue-700 bg-blue-50',
         actorShadow: 'shadow-blue-600/20',
-        title: 'Ordre de virement',
+        title: 'Remboursement',
         description:
-            "La validation finale déclenche l'ordre de virement vers le compte du bénéficiaire, assurant une traçabilité totale.",
+            "L'assureur rembourse le patient et met à jour la feuille de maladie.",
         icon: (
             <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

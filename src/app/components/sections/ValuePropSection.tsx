@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 const profiles = [
   {
     role: 'Espace Médecin',
-    headline: 'Gérez vos actes sans friction.',
+    headline: 'Gérez vos consultations sans friction.',
     description:
-      "Saisissez le motif de consultation en deux clics. Le logiciel génère la feuille de soins numérique et l'injecte dans le canal de l'assureur.",
+      "Saisissez vos diagnostics instatanément. Le logiciel génère la feuille de soins numérique et l'injecte dans le canal de l'assureur.",
     accentTheme: {
       iconBg: 'bg-slate-900 text-white shadow-lg shadow-slate-900/20',
       badgeClass: 'bg-slate-100 text-slate-800 border-slate-200/80',
@@ -39,7 +39,7 @@ const profiles = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
       </svg>
     ),
-    perks: ['Application stricte des 80% / 100%', 'Ajout de praticiens & assurés', 'Export de bordereaux comptables'],
+    perks: ['Application stricte des 80% / 100%', 'Ajout de médécins & assurés', 'Export de bordereaux comptables'],
   },
 ]
 

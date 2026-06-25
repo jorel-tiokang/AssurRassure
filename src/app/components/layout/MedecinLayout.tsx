@@ -3,10 +3,10 @@ import { LayoutDashboard, FileText, PlusCircle, LogOut, Users, Bell } from "luci
 
 export function MedecinLayout() {
   const location = useLocation()
-  
+
   // Conditionally render "Mes Patients" depending on specialist status
-  const isSpecialiste = false; 
-  
+  const isSpecialiste = false;
+
   const navItems = [
     { name: "Tableau de bord", path: "/medecin/dashboard", icon: LayoutDashboard },
     ...(isSpecialiste ? [] : [{ name: "Mes Patients", path: "/medecin/patients", icon: Users }]),
@@ -14,31 +14,33 @@ export function MedecinLayout() {
   ]
 
   return (
-    <div className="theme-dashboard flex min-h-screen">
+    <div className="theme-dashboard squares_bg flex min-h-screen">
       <aside className="w-64 bg-ink text-white flex flex-col border-r border-white/10">
         <div className="p-6">
           <Link to="/" className="flex items-center gap-2">
-            <div className="h-8 w-8 bg-[#0055FF] rounded-sm flex items-center justify-center">
-              <span className="font-display font-bold text-lg text-white leading-none">A</span>
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-md shadow-blue-600/30 group-hover:scale-105 transition-transform">
+              <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
             </div>
             <span className="font-display font-bold text-xl tracking-tight">AssurRassure</span>
           </Link>
           <div className="mt-2 text-xs text-white/50 tracking-widest uppercase font-medium">Espace Médecin</div>
         </div>
-        
+
         <nav className="flex-1 px-4 py-6 space-y-1">
           {navItems.map((item) => {
             const isReallyActive = location.pathname.startsWith(item.path) && (item.path !== '/medecin/consultations' || location.pathname === '/medecin/consultations') || (item.path === '/medecin/consultations' && location.pathname.startsWith('/medecin/consultations'))
-            
+
             return (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-colors ${
-                  isReallyActive 
-                    ? "bg-white/10 text-white" 
+                className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-colors ${isReallyActive
+                    ? "bg-white/10 text-white"
                     : "text-white/60 hover:bg-white/5 hover:text-white"
-                }`}
+                  }`}
               >
                 <item.icon className="h-5 w-5" strokeWidth={1.5} />
                 {item.name}
@@ -66,7 +68,7 @@ export function MedecinLayout() {
           </Link>
         </div>
       </aside>
-      
+
       <main className="flex-1 flex flex-col min-h-screen">
         <header className="h-16 border-b border-ink/10 bg-surface flex items-center justify-between px-8">
           <h1 className="font-display text-xl font-medium tracking-tight text-ink">
