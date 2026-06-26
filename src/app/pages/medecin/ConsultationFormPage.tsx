@@ -118,7 +118,7 @@ ${prescriptionSpecialiste ? `\nOrientation Spécialiste:\nSpécialité: ${prescr
         </div>
 
         <div className="bg-white border border-ink/10 shadow-sm p-8 space-y-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <p className="text-xs text-ink-muted uppercase font-medium">Patient</p>
               <p className="font-medium text-ink">{selectedPatient?.nom}</p>
@@ -130,7 +130,7 @@ ${prescriptionSpecialiste ? `\nOrientation Spécialiste:\nSpécialité: ${prescr
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <p className="text-xs text-ink-muted uppercase font-medium mb-1">Symptômes</p>
               <p className="text-ink whitespace-pre-wrap bg-zinc-50 p-4">{symptome}</p>

@@ -1,8 +1,10 @@
+import { useState } from "react"
 import { Outlet, Link, useLocation, useNavigate } from "react-router"
-import { Users, LayoutDashboard, FileText, DollarSign, LogOut, Stethoscope, ArrowLeft } from "lucide-react"
+import { Users, LayoutDashboard, FileText, DollarSign, LogOut, Stethoscope, ArrowLeft, Menu, X } from "lucide-react"
 
 export function AgentLayout() {
   const location = useLocation()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navItems = [
     { name: "Tableau de bord", path: "/agent/dashboard", icon: LayoutDashboard },
@@ -18,9 +20,22 @@ export function AgentLayout() {
 
   return (
     <div className="theme-dashboard squares_bg flex min-h-screen">
-      <aside className="w-64 bg-ink text-white flex flex-col border-r border-white/10">
-        <div className="p-6">
-          <Link to="/" className="flex items-center gap-2">
+      {/* Mobile overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-ink/50 z-40 md:hidden" 
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-ink text-white flex flex-col border-r border-white/10 transition-transform duration-300 ease-in-out
+        md:relative md:translate-x-0
+        ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+      `}>
+        <div className="p-6 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-md shadow-blue-600/30 group-hover:scale-105 transition-transform">
               <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -30,6 +45,12 @@ export function AgentLayout() {
 
             <span className="font-display font-bold text-xl tracking-tight">AssurRassure</span>
           </Link>
+          <button 
+            className="md:hidden text-white/60 hover:text-white"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <X className="h-6 w-6" />
+          </button>
         </div>
 
         <nav className="flex-1 px-4 py-6 space-y-1">
@@ -39,6 +60,7 @@ export function AgentLayout() {
               <Link
                 key={item.path}
                 to={item.path}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-colors ${isActive
                     ? "bg-white/10 text-white"
                     : "text-white/60 hover:bg-white/5 hover:text-white"
@@ -71,9 +93,15 @@ export function AgentLayout() {
         </div>
       </aside>
 
-      <main className="flex-1 flex flex-col min-h-screen">
-        <header className="h-16 border-b border-ink/10 bg-surface flex items-center justify-between px-8">
-          <div className="flex items-center gap-4">
+      <main className="flex-1 flex flex-col min-h-screen w-full md:w-auto">
+        <header className="h-16 border-b border-ink/10 bg-surface flex items-center justify-between px-4 md:px-8">
+          <div className="flex items-center gap-3 md:gap-4">
+            <button
+              className="md:hidden flex items-center justify-center h-8 w-8 rounded-sm hover:bg-ink/5 text-ink-muted transition-colors"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <Menu className="h-5 w-5" />
+            </button>
             {showBackButton && (
               <button
                 onClick={() => navigate(-1)}
@@ -83,17 +111,17 @@ export function AgentLayout() {
                 <ArrowLeft className="h-5 w-5" />
               </button>
             )}
-            <h1 className="font-display text-xl font-medium tracking-tight text-ink">
+            <h1 className="font-display text-lg md:text-xl font-medium tracking-tight text-ink truncate max-w-[200px] md:max-w-none">
               {navItems.find(i => location.pathname.startsWith(i.path))?.name || "Administration"}
             </h1>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-sm font-medium px-2.5 py-1 bg-blue-50 text-[#0055FF] rounded-sm border border-[#0055FF]/20">
+          <div className="flex items-center gap-2 md:gap-4">
+            <span className="text-xs md:text-sm font-medium px-2 md:px-2.5 py-1 bg-blue-50 text-[#0055FF] rounded-sm border border-[#0055FF]/20">
               Connecté
             </span>
           </div>
         </header>
-        <div className="flex-1 p-8 overflow-auto">
+        <div className="flex-1 p-4 md:p-8 overflow-auto">
           <Outlet />
         </div>
       </main>

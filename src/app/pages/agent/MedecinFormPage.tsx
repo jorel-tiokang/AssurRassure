@@ -156,7 +156,7 @@ export function MedecinFormPage() {
         <h2 className="text-lg font-display font-medium mb-2 text-ink">Type de praticien</h2>
         <p className="text-sm text-ink-muted mb-6">Sélectionnez d'abord le type de médecin à inscrire.</p>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <button
             type="button"
             onClick={() => handleTypeChange("GENERALISTE")}

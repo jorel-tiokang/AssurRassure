@@ -52,7 +52,7 @@ export function FeuillesMaladiesListPage() {
       </div>
 
       {/* Summary cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="bg-white border border-ink/10 shadow-sm p-5 flex items-center gap-4">
           <div className="h-12 w-12 bg-amber-50 flex items-center justify-center">
             <Clock className="h-6 w-6 text-amber-600" />
@@ -230,7 +230,7 @@ export function FeuillesMaladiesListPage() {
               {/* Consultation info */}
               <div>
                 <h3 className="text-xs font-medium text-ink-muted uppercase tracking-wide mb-3">Informations Médicales (Consultation #{viewFeuille.consultationId})</h3>
-                <dl className="grid grid-cols-2 gap-x-6 gap-y-3">
+                <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
                   <div className="col-span-2">
                     <dt className="text-xs text-ink-muted">Assuré</dt>
                     <dd className="font-medium text-ink">
@@ -264,7 +264,7 @@ export function FeuillesMaladiesListPage() {
               {viewFeuille.statut === "Remboursé" && (
                 <div className="border-t border-ink/10 pt-6">
                   <h3 className="text-xs font-medium text-ink-muted uppercase tracking-wide mb-3">Informations de Remboursement</h3>
-                  <dl className="grid grid-cols-2 gap-x-6 gap-y-3">
+                  <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
                     <div>
                       <dt className="text-xs text-ink-muted">Date de remboursement</dt>
                       <dd className="font-medium text-ink">

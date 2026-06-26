@@ -165,7 +165,7 @@ export function TarifsListPage() {
               )}
             </div>
 
-            <div className="mt-6 pt-6 border-t border-ink/5 grid grid-cols-2 gap-4">
+            <div className="mt-6 pt-6 border-t border-ink/5 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-zinc-50 p-4">
                 <p className="text-xs text-ink-muted uppercase tracking-wide font-medium mb-1">Taux de remboursement CAM-SANTE</p>
                 <p className="text-lg font-mono font-medium text-ink">{tarif.id === 'generaliste' ? '100%' : '80%'}</p>

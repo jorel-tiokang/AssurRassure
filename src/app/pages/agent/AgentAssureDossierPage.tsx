@@ -153,7 +153,7 @@ export function AgentAssureDossierPage() {
                           {feuille.statut}
                         </span>
                       </div>
-                      <div className="grid grid-cols-2 gap-4 text-sm mt-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm mt-3">
                         <div>
                           <span className="text-ink-muted block text-xs mb-1">ID Consultation</span>
                           <span>{feuille.consultationId}</span>
