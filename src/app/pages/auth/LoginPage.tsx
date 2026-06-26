@@ -87,7 +87,7 @@ export function LoginPage() {
                 role === "AGENT" ? "bg-white text-ink shadow-sm" : "text-ink-muted hover:text-ink"
               }`}
             >
-              Agent Admin
+              Assureur
             </button>
             <button
               type="button"
