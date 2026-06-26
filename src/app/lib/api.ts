@@ -1,4 +1,5 @@
 import { useAuthStore } from './authStore';
+import { mockDatabase } from './mockDatabase';
 
 const BASE_URL = '/api'; // Adjust this if your backend is hosted elsewhere
 
@@ -10,6 +11,18 @@ interface RequestOptions extends RequestInit {
 async function fetchWithAuth(endpoint: string, options: RequestOptions = {}) {
   const { token, logout } = useAuthStore.getState();
   
+  if (import.meta.env.PROD) {
+    try {
+      return await mockDatabase.handleRequest(endpoint, options.method || 'GET', options.data);
+    } catch (error: any) {
+      if (error.message === 'Non autorisé ou session expirée') {
+        logout();
+        window.location.href = '/login';
+      }
+      throw error;
+    }
+  }
+
   const headers = new Headers(options.headers || {});
   
   // Set Content-Type if we have JSON data and it's not FormData
